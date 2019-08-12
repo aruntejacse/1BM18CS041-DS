@@ -1,0 +1,43 @@
+#include<stdio.h>
+
+struct stu
+{
+    int marks[5];
+    int credits[5];
+
+};
+
+float sgpa(struct stu s);
+int main()
+{
+    struct stu s;
+    float sgp;
+    for(int i=0;i<5;i++)
+    {
+        printf("Enter marks and credits for subject %d:",i+1);
+        scanf("%d%d",&s.marks[i],&s.credits[i]);
+    }
+    sgp=sgpa(s);
+    printf("Your sgpa is %.2f",sgp);
+    return 0;
+}
+
+float sgpa(struct stu s)
+{
+    int i;
+    float res,sum=0,crd=0;
+    for(i=0;i<5;i++)
+    {
+        if(s.marks[i]>=90 && s.marks[i]<=100)
+            sum+=(10*s.credits[i]);
+        else if(s.marks[i]>=75 && s.marks[i]<90)
+            sum+=(9*s.credits[i]);
+        else if(s.marks[i]>=60 && s.marks[i]<75)
+            sum+=(8*s.credits[i]);
+        else
+            sum+=(7*s.credits[i]);
+       crd+=s.credits[i];
+    }
+    res=sum/crd;
+    return res;
+}
