@@ -40,7 +40,7 @@ void infix_postfix(char infix[],char postfix[])
     for(i=0;i<strlen(infix);i++)
     {
         symbol=infix[i];
-        while(F(s[top]>G(symbol)))
+        while(F(s[top])>G(symbol))
         {
             postfix[j]=s[top--];
             j++;
@@ -65,5 +65,4 @@ void main()
     infix_postfix(infix,postfix);
     printf("The postfix exp is \n");
     printf("%s\n",postfix);
-    getch();
 }
