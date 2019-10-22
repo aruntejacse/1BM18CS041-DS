@@ -26,7 +26,8 @@ NODE insert_end(NODE head,int item)
     q->data=item;
     if(head==NULL)
 	{
-	q=head;
+	q->next=NULL;
+	head=q;
 	return head;
 	}
     p=head;
@@ -81,6 +82,12 @@ NODE sort(NODE head)
 
 NODE concatenate(NODE head,NODE head2)
 {
+    if(head==NULL)
+	return head2;
+    else if(head2==NULL)
+	return head;
+    else
+    {
     NODE p=head;
     while(p!=NULL)
 	{
@@ -88,6 +95,7 @@ NODE concatenate(NODE head,NODE head2)
 	}
     p->next=head2;
     return head;
+    }
 }
 
 NODE reverse(NODE head)
@@ -108,7 +116,7 @@ void main()
 {
     NODE head=NULL;
     NODE head2=NULL;
-    int ch,i=-1,item;
+    int ch,i=-1,item,item2;
     while(i!=0)
 	{
 	printf("ENTER YOUR CHOICE\n");
@@ -120,22 +128,25 @@ void main()
 		scanf("%d",&item);
 		head=insert_end(head,item);
 		break;
-	case 2:printf("enter elements to be inserted for two lists:");
+	case 2:printf("enter elements to be inserted list 1:");
 		scanf("%d",&item);
 		head=insert_end(head,item);
-		scanf("%d",&item);
-		head2=insert_end(head2,item);
+		printf("enter elements to be inserted list 2:");
+		scanf("%d",&item2);
+		head2=insert_end(head2,item2);
 		head=concatenate(head,head2);
-		display(head);
 		break;
 	case 3:head=sort(head);
-		display(head);
+		
 		break;
 	case 4:head=reverse(head);
-		display(head);
+		
+		break;
+	case 5:display(head);
 		break;
 	default:exit(0);
 	}
     }
 }
+
 
